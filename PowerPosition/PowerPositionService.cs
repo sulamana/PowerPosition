@@ -12,7 +12,6 @@ using System.Timers;
 using System.Threading.Tasks;
 
 using Services; //PowerService Objects
-//installutil PowerPosition.exe
 
 namespace PowerPosition
 {
@@ -185,7 +184,7 @@ namespace PowerPosition
                     if (attempts > MaxRetryAttempts)
                         eventlogger.WriteEntry(string.Format("AggregratePowerPositionsAsync Exceeded {0} retry attempts", attempts), EventLogEntryType.Error);
                     else
-                        await Task.Delay(10000);    //Wait 10 seconds before next attempt
+                        await Task.Delay(RetryDelayInterval);    //No Data so Wait for retry delay to compplete
                 }
 
                 ++attempts;
